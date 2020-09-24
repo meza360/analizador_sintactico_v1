@@ -27,25 +27,65 @@ public:
     string cadena_interna = "";
 public:
     Analizador() { this->caracter = caracter;}
+
+    void transicion(char* diagrama, int tabla) {
+        for (int a = 0; a < tabla; a++)
+        {
+            if (diagrama[a] != NULL && diagrama[a] != ' ')
+            {
+                std::cout << "\t**\t\t*\n\t**\t      *\n\t**           *\n"; Sleep(150);
+                std::cout << "******************" << endl; Sleep(150);
+                std::cout << "**\t\t**" << endl; Sleep(150);
+                std::cout << "**\t" << diagrama[a] << "\t**  *" << endl; Sleep(150);
+                std::cout << "**\t\t**   *" << endl; Sleep(150);
+                std::cout << "******************    *   " << diagrama[a + 1] << endl; Sleep(150);
+                Sleep(100);
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
 };
 
-void transicion(char *diagrama,int tabla){
-    for (int a = 0 ; a < tabla; a++)
-    {
-        if (diagrama[a] != NULL)
+class Tablas_transicion {
+public:
+    Tablas_transicion() {}
+
+public:
+    void generador(char *filas,int columnas) {
+        std::cout << "\n\n";
+        std::cout << "\tDiagrama de transicion\n\n";
+        for (int a = 0; a < columnas; a++)
         {
-            std::cout << "\t**\t\t*\n\t**\t      *\n\t**           *\n"; Sleep(800);
-            std::cout << "******************" << endl; Sleep(800);
-            std::cout << "**\t\t**" << endl; Sleep(800);
-            std::cout << "**\t" << diagrama[a] << "\t**  *" << endl; Sleep(800);
-            std::cout << "**\t\t**   *" << endl; Sleep(800);
-            std::cout << "******************    *   " << diagrama[a + 1] << endl; Sleep(800);
-            Sleep(250);
+            if (filas[a] != NULL)
+            {
+                std::cout << " *-* |"<<filas[a]<<"| *-* |";
+            }
+            else
+            {
+                break;
+            }
         }
-        else
-        {break;} 
+        std::cout << endl;
+        string difference = "| *-* | *-* |";
+        for (int b = 0; b < columnas; b++)
+        {
+            if (filas[b] != NULL)
+            {
+                std::cout <<" *-* |"<<filas[b]<<difference<<filas[b+1]<<difference <<endl;
+            }
+            else
+            {
+                break;
+            }
+            difference += " | *-* | *-* |";
+        }
     }
-}
+
+};
+
 
 
 int main(int argc,char *argv[])
@@ -59,6 +99,7 @@ int main(int argc,char *argv[])
     char *puntero_cadena = &*cadena;
     
     Analizador conexion;
+    Tablas_transicion conexion_2;
     
     //algoritmo de aceptacion, no admite caracteres ajenos al lenguaje definido
     for (short i = 0; i < CHAR_MAX; i++)
@@ -84,26 +125,31 @@ int main(int argc,char *argv[])
     string auxiliar_5 = &*conexion.puntero_aceptacion_4;
     
     //proceso de verificacion si el automata llega a un estado de aceptacion o solo acepta la cadena para un estado neutro
-        if (*puntero_cadena != *conexion.puntero_aceptacion_1 || *puntero_cadena != *conexion.puntero_aceptacion_2 || *puntero_cadena != *conexion.puntero_aceptacion_3 || *puntero_cadena != *conexion.puntero_aceptacion_4)
+        if (*puntero_cadena != *conexion.puntero_aceptacion_1 && *puntero_cadena != *conexion.puntero_aceptacion_2 && *puntero_cadena != *conexion.puntero_aceptacion_3 && *puntero_cadena != *conexion.puntero_aceptacion_4)
         {
-            transicion(&*puntero_cadena, 8);
+            conexion.transicion(&*puntero_cadena, 12);
             std::cout << "La cadena es aceptada, pero no llega al estado esperado.";
+            conexion_2.generador(&*puntero_cadena, 12);
         }
         else if (*conexion.puntero_aceptacion_1 == *puntero_cadena)
         {
-            transicion(&*puntero_cadena, 12);
+            conexion.transicion(&*puntero_cadena, 12);
+            conexion_2.generador(&*puntero_cadena, 12);
         }
         else if (*conexion.puntero_aceptacion_2 == *puntero_cadena)
         {
-            transicion(&*puntero_cadena, 9);
+            conexion.transicion(&*puntero_cadena, 9);
+            conexion_2.generador(&*puntero_cadena, 9);
         }
         else if (*conexion.puntero_aceptacion_3 == *puntero_cadena)
         {
-            transicion(&*puntero_cadena, 8);
+            conexion.transicion(&*puntero_cadena, 8);
+            conexion_2.generador(&*puntero_cadena, 8);
         }
         else if (*conexion.puntero_aceptacion_4 == *puntero_cadena)
         {
-            transicion(&*puntero_cadena, 9);
+            conexion.transicion(&*puntero_cadena, 9);
+            conexion_2.generador(&*puntero_cadena, 9);
         }
         else 
         {
