@@ -61,7 +61,7 @@ public:
         {
             if (filas[a] != NULL)
             {
-                std::cout << " *-* |"<<filas[a]<<"| *-* |";
+                std::cout << ""<<filas[a]<<"| *-* |";
             }
             else
             {
@@ -69,18 +69,18 @@ public:
             }
         }
         std::cout << endl;
-        string difference = "| *-* | *-* |";
+        string difference = "| *-* |";
         for (int b = 0; b < columnas; b++)
         {
             if (filas[b] != NULL)
             {
-                std::cout <<" *-* |"<<filas[b]<<difference<<filas[b+1]<<difference <<endl;
+                std::cout <<""<<filas[b]<<difference<<filas[b+1]<<difference <<endl;
             }
             else
             {
                 break;
             }
-            difference += " | *-* | *-* |";
+            difference += " | *-* |";
         }
     }
 
@@ -90,7 +90,8 @@ public:
 
 int main(int argc,char *argv[])
 {
-    std::cout << "\t\t\tBienvenido al programa\nEste es un automata finito determinista.\nY determina si una cadena pertenece a las expresiones regulares del lenguaje\npero no todas finalizan en el estado de aceptacion por su naturaleza";
+    std::cout << "\t\t\tBienvenido al programa\nEste es un automata finito determinista.\n"
+        <<"Y determina si una cadena pertenece a las expresiones regulares del lenguaje\npero no todas finalizan en el estado de aceptacion por su naturaleza";
     std::cout << "\nPor favor, ingrese una cadena y compruebe si el automata lo acepta.\n";
     std::cout << "\nEntre las cadenas aceptadas se encuentran:"
         <<"\nPROGRAMACION\nLENGUAJES\nAUTOMATAS\nFORMALES\n";
