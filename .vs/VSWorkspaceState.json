@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\program_base"
   ],
-  "SelectedNode": "\\.gitattributes",
+  "SelectedNode": "\\program_base\\program_base.sln",
   "PreviewInSolutionExplorer": false
 }
